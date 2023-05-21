@@ -50,8 +50,7 @@ class SeleniumMiddleware:
             driver_options.add_argument(argument)
 
         driver_kwargs = {
-            'executable_path': driver_executable_path,
-            f'{driver_name}_options': driver_options
+            'executable_path': driver_executable_path
         }
 
         self.driver_queue = Queue(maxsize=max_driver_instances)
@@ -59,8 +58,7 @@ class SeleniumMiddleware:
         # locally installed driver
         if driver_executable_path is not None:
             driver_kwargs = {
-                'executable_path': driver_executable_path,
-                f'{driver_name}_options': driver_options
+                'executable_path': driver_executable_path
             }
             for i in range(0, max_driver_instances):
                 self.driver_queue.put(driver_klass(**driver_kwargs))        # remote driver
